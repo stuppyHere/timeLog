@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Timer from "./Timer";
+import Message from "./Message";
+import Button from "./Button";
 
 function InputBox() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [input , setInput] = useState("")
+  const [input, setInput] = useState("");
+  const [title, setTitle] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,21 +24,34 @@ function InputBox() {
   // const time = `${year}-${month}-${day} ||${hour}:${min}:${sec}`;
   const time = currentTime;
 
-  function handleInputChange(event){
-    setInput(event.target.value)
+  function handleInputChange(event) {
+    setInput(event.target.value);
   }
 
+  function handleTitleChange(event) {
+    setTitle(event.target.value);
+  }
   return (
     <>
-      <div>
-        <input
-          type="datetime-local"
-          className="input-box"
-          id="start-time"
-          onChange={handleInputChange}
-        />
+      <div className="time-log">
+        <div className="input-container">
+          <input type="text" id="timer-title" placeholder="Unknown" onChange={handleTitleChange} />
+          <input
+            type="datetime-local"
+            className="input-box"
+            id="start-time"
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="button-container">
+          <Button nameForButton="start" />
+          <Button nameForButton="stop" />
+          <Button nameForButton="delete" />
+        </div>
+        <div className="timer-container">
+          <Message starting={input} name={title} />
+        </div>
       </div>
-      <Timer starting = {input} />
     </>
   );
 }
