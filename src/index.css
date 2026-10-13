@@ -5,48 +5,49 @@
 }
 
 :root {
-    /* Backgrounds */
     --bgcolor: #eaf3ff;
     --surface: #ffffff;
     --surface-soft: #dbeafe;
 
-    /* Blue shades */
     --primary: #2563eb;
     --primary-hover: #1d4ed8;
     --secondary: #60a5fa;
     --accent: #93c5fd;
     --border: #bfdbfe;
 
-    /* Text */
     --text: #1e3a5f;
     --text-muted: #64748b;
     --text-light: #ffffff;
 
-    /* Effects */
     --shadow: rgba(37, 99, 235, 0.12);
+}
+
+html,
+body {
+    width: 400px;
+    height: 250px;
+    margin: 0;
+    overflow: hidden;
 }
 
 #root {
     width: 400px;
-    min-height: 250px;
+    height: 250px;
     border-radius: 10px;
     background: var(--bgcolor);
     padding: 10px;
+    overflow: hidden;
 }
 
 input {
     width: 100%;
     height: 40px;
     border-radius: 5px;
-    border: var(--border) 1px solid;
-    padding: 0;
-    padding-left: 10px;
-    padding-right: 10px;
+    border: 1px solid var(--border);
+    padding: 0 10px;
     color: var(--text);
     font-weight: 600;
 }
-
-
 
 input::placeholder {
     color: var(--text-muted);
@@ -58,14 +59,30 @@ input:focus {
     box-shadow: 0 4px 12px var(--shadow);
 }
 
-
 div {
     width: 100%;
+}
+
+.time-log {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 100%;
+    min-height: 0;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .button-container {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .button-container button {
@@ -101,26 +118,22 @@ div {
     outline-offset: 3px;
 }
 
-.time-log {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.input-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.timer-container {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .message {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: var(--border) 1px solid;
+    border: 1px solid var(--border);
     border-radius: 5px;
     background: var(--surface);
     padding: 10px 0;
+    margin-bottom: 8px;
 }
 
 .message h1 {
@@ -128,7 +141,6 @@ div {
     font-weight: 700;
     color: var(--text);
 }
-
 
 .message p {
     font-weight: 600;

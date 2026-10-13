@@ -35,55 +35,56 @@ function InputBox() {
     localStorage.setItem("allTimer", JSON.stringify(updatedTimerLog));
   }
 
-  function deleteTimer(){
-    let timerTitle = title ? title : noDeleteError;
-    let deleteElement = {
-
-    }
-  }
-
-  function noDeleteError(){
-    console.log("no timer with that name")
+  function deleteTimer() {
+    let deleteTitle = title ? title : "Unknown";
+    let deletedArray = timerLog.filter(timer => timer.timerName != deleteTitle)
+    deleteTitle = ""
+    setTimerLog(deletedArray)
+    localStorage.setItem("allTimer", JSON.stringify(deletedArray));
+    setTitle("");
+    document.querySelector("#timer-title").value = "";
   }
 
   return (
-    <>
-      <div className="time-log">
-        <div className="input-container">
-          <input
-            type="text"
-            id="timer-title"
-            placeholder="Unknown"
-            onChange={handleTitleChange}
-          />
-          <input
-            type="datetime-local"
-            className="input-box"
-            id="start-time"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="button-container">
-          <Button
-            userFuntion={startTimer}
-            nameForButton="start"
-            id="start-btn"
-          />
-          <Button userFuntion={deleteTimer} nameForButton="delete" />
-        </div>
-        <div className="timer-container">
-          {/* <Message starting={input} name={title} /> */}
-          {timerLog.map((details) => (
-            <Message
-              key={details.id}
-              starting={details.starting}
-              title={details.timerName}
-            />
-          ))}
-        </div>
+  <>
+    <div className="time-log">
+      <div className="input-container">
+        <input
+          type="text"
+          id="timer-title"
+          placeholder="Unknown"
+          onChange={handleTitleChange}
+        />
+        <input
+          type="datetime-local"
+          className="input-box"
+          id="start-time"
+          onChange={handleInputChange}
+        />
       </div>
-    </>
-  );
+      <div className="button-container">
+        <Button
+          userFuntion={startTimer}
+          nameForButton="start"
+          id="start-btn"
+        />
+        <Button userFuntion={deleteTimer} nameForButton="delete" />
+      </div>
+      <div className="timer-container">
+        {/* <Message starting={input} name={title} /> */}
+        {timerLog.map((details) => (
+          <Message
+            key={details.id}
+            starting={details.starting}
+            title={details.timerName}
+          />
+        ))}
+      </div>
+    </div>
+  </>
+);
 }
+
+
 
 export default InputBox;
