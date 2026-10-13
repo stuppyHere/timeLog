@@ -1,7 +1,7 @@
 import React , {useState } from "react";
 
-function Button({nameForButton="UnNamed"}){
-    return(<button>{nameForButton}</button>)
+function Button({nameForButton="UnNamed",userFuntion}){
+    return(<button onClick={userFuntion}>{nameForButton}</button>)
 }
 
 export default Button
